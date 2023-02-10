@@ -1,6 +1,16 @@
 const source = JSON.parse(sourceJson);
 var root = document.getElementById("table_body");
 
+const groupedSource = source.reduce((pv,cv)=>{
+    return ({
+        ...pv,
+        [cv.category]: [
+            ...(pv[cv.category] ? pv[cv.category] : []),
+            cv
+        ]
+    });
+},{});
+console.log(groupedSource);
 var table = source
     .filter((row) => !!row.url)
     .map((row) => {
@@ -13,8 +23,7 @@ var table = source
     })
     .map((row) => {
         return `<tr scope="row">
-    <td scope="col">${row.sn}</td>
-    <td scope="col">${row.category}</td>
+    <td scope="col">${row.category} (${groupedSource[row.category].length})</td>
     <td scope="col"><a target='_empty' href='${row.url}'>${row.url}</a></td>
     <td scope="col">${row.hint}</td>
     </tr>`;

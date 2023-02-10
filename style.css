@@ -1,4 +1,8 @@
+#root{
+    margin-top: 20px;
+}
+
 a:visited {
-        color: #33ff81;
-        text-decoration: underline;
-    }
+    color: #681da8;
+    text-decoration: underline;
+}
